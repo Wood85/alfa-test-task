@@ -1,0 +1,35 @@
+.footer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.logo {
+	width: 44px;
+	height: 48px;
+	cursor: pointer;
+}
+
+.img {
+	height: 100%;
+	object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .footer {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+	
+	.logo {
+		width: 30px;
+		height: 30px;
+	}
+
+	.github_icon {
+    width: 30px;
+		height: 30px;
+	}
+	
+}

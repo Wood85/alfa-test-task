@@ -3,7 +3,8 @@ interface IProduct {
 	title: string;
 	description: string; 
 	price: number;
-	images: string[]; 
+	images: string[];
+	isLiked: boolean;
 }
 
 export default IProduct;

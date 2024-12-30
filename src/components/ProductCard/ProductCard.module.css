@@ -35,17 +35,50 @@
 	gap: 1rem;
 }
 
-.img_wrap {
-	display: flex;
+.container {
+	position: relative;
 	width: 100%;
 	height: 75%;
+}
+
+.img_wrap {
+  display: flex;
+	width: 100%;
+	height: 100%;
 	overflow: hidden;
 }
 
 .img {
-	object-fit:cover;
 	width: 100%;
 	height: 100%;
+  object-fit: cover;
+	object-position: center;
+}
+
+.heart_container,
+.trash_container {
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	top: 20px;
+	border-radius: 50px;
+	background-color: var(--white-color);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+
+.heart_container {
+	right: 20px;
+}
+
+.trash_container {
+	left: 20px;
+}
+
+.favorites {
+	fill: red;
 }
 
 .title {

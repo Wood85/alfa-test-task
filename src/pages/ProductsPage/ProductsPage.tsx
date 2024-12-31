@@ -1,54 +1,38 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useAppSelector, useAppDispatch } from "../../hooks/redux";
+import { setProducts, toggleFavorite, deleteProduct, setLoading } from "../../store/reducers/productsSlice";
+import Spinner from "../../components/Spinner/Spinner";
 import ProductCard from "../../components/ProductCard/ProductCard";
-import type IProduct from "../../interfaces/Product";
 
 import styles from "./ProductsPage.module.css";
 
 function ProductsPage() {
-  const [products, setProducts] = useState<IProduct[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+
+	const dispatch = useAppDispatch();
+	const { products, favorites, isLoading } = useAppSelector((state) => state.products);
 	const [filter, setFilter] = useState<"all" | "favorites">("all");
 
-	const navigate = useNavigate();
+	useEffect(() => {
+		if (products.length === 0) {
+			dispatch(setLoading(true));
+      const fetchProducts = async () => {
+				const response = await fetch("https://api.escuelajs.co/api/v1/products");
+				const data = await response.json();
+				dispatch(setProducts(data));
+			};
+			fetchProducts();
+			dispatch(setLoading(false));
+		} 
+  }, [dispatch, products.length]);
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        setLoading(true);
-        const response = await fetch("https://api.escuelajs.co/api/v1/products?offset=6&limit=10");
-        if (!response.ok) {
-          throw new Error("Failed to fetch products");
-        }
-        const data = await response.json();
-        setProducts(data);
-      } catch (err: any) {
-        setError(err.message || "Something went wrong");
-      } finally {
-        setLoading(false);
-      }
-    };
+	const filteredProducts =
+    filter === "favorites"
+      ? products.filter((product) => favorites.includes(product.id))
+      : products;
 
-    fetchProducts();
-  }, []);
-
-	const toggleLike = (id: number) => {
-    setProducts((prev) =>
-      prev.map((product) =>
-        product.id === id ? { ...product, isLiked: !product.isLiked } : product
-      )
-    );
-  };
-
-	const deleteProduct = (id: number) => {
-    setProducts((prev) => prev.filter((product) => product.id !== id));
-  };
-
-	const filteredProducts = filter === "favorites" ? products.filter((product) => product.isLiked) : products;
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
+	if (isLoading) {
+		return <div className={styles.spinner}><Spinner /></div>;
+	}
 
   return (
     <div className={styles.page}>
@@ -67,9 +51,8 @@ function ProductsPage() {
 						images={product.images}
 						description={product.description}
 						isLiked={product.isLiked}
-						onToggleLike={toggleLike}
-            onDelete={deleteProduct}
-            onNavigate={(id) => navigate(`/products/${id}`)}
+						onToggleLike={() => dispatch(toggleFavorite(product.id))}
+            onDelete={() => dispatch(deleteProduct(product.id))}
 					/>
         ))}
       </ul>

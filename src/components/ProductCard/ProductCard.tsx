@@ -1,27 +1,25 @@
 import IProduct from '../../interfaces/Product';
 import { HeartIcon } from "../../assets/images/HeartIcon";
-import { TrashIcon } from '../../assets/images/TrashIcon';
-import { useAppDispatch } from '../../hooks/redux';
-import { details } from '../../store/reducers/productSlice';
+import { TrashIcon } from '../../assets/images/TrashIcon'
+import { useNavigate } from "react-router-dom";
 import styles from "./ProductCard.module.css";
 
 interface ProductCardProps extends IProduct {
-	onToggleLike: (id: number) => void;
-  onDelete: (id: number) => void;
-  onNavigate: (id: number) => void;
+	onToggleLike: () => void;
+  onDelete: () => void;
 }
 
-function ProductCard({ id, title, price, images, isLiked, description, onToggleLike, onDelete, onNavigate}: ProductCardProps) {
+function ProductCard({ id, title, price, images, isLiked, onToggleLike, onDelete}: ProductCardProps) {
 
-	const productDetails = {id, title, price, images, isLiked, description};
+	const navigate = useNavigate();
 
-	const dispatch = useAppDispatch();
+	const handleCardClick = () => {
+    navigate(`/products/${id}`);
+  };
 
   return (
 		<li className={styles.card}>
-			<div className={styles.card_container} onClick={() => {
-				dispatch(details(productDetails))
-				onNavigate(id)}}>
+			<div className={styles.card_container} onClick={handleCardClick}>
 			  <div className={styles.product}>
 					<div className={styles.container}>
 					  <div className={styles.img_wrap}>
@@ -31,7 +29,7 @@ function ProductCard({ id, title, price, images, isLiked, description, onToggleL
 						  className={styles.heart_container} 
 							onClick={(e) => {
                 e.stopPropagation();
-                onToggleLike(id);
+                onToggleLike();
               }}
 						>
               <HeartIcon
@@ -45,7 +43,7 @@ function ProductCard({ id, title, price, images, isLiked, description, onToggleL
 						<div className={styles.trash_container}
               onClick={(e) => {
                 e.stopPropagation();
-                onDelete(id);
+                onDelete();
               }}
             >
               <TrashIcon className={styles.trash_icon}/>

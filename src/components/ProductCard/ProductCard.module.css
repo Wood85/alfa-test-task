@@ -13,6 +13,11 @@
 	transition: all 0.3s;
 }
 
+.card:hover .img {
+	transform: scale(1.1);
+	transition: all 0.3s;
+}
+
 
 .card_container {
 	display: flex;
@@ -53,6 +58,7 @@
 	height: 100%;
   object-fit: cover;
 	object-position: center;
+	transition: all 0.3s;
 }
 
 .heart_container,
@@ -61,7 +67,7 @@
 	width: 50px;
 	height: 50px;
 	top: 20px;
-	border-radius: 50px;
+	border-radius: 50%;
 	background-color: var(--white-color);
 	display: flex;
 	justify-content: center;
@@ -83,6 +89,7 @@
 
 .title {
 	margin: 0;
+	padding: 0 10px;
 }
 
 .price {
@@ -102,6 +109,28 @@
 	.card {
 		width: 100%;
 	}
+
+	.heart_container,
+  .trash_container {
+  	width: 40px;
+  	height: 40px;
+  	top: 15px;
+  }
+  
+  .heart_container {
+  	right: 15px;
+  }
+  
+  .trash_container {
+  	left: 15px;
+  }
+
+	.heart_icon,
+	.trash_icon {
+		width: 25px;
+		height: 25px;
+	}
+
 }
 
 

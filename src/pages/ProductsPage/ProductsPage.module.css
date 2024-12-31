@@ -2,6 +2,9 @@
 	display: flex;
 	flex-direction: column;
 	gap: 50px;
+	padding-bottom: 50px;
+	max-width: 1280px;
+	margin: 0 auto;
 }
 
 .btns {
@@ -40,7 +43,21 @@
 
 
 @media (max-width: 570px) {
+
+	.page {
+		padding: 0 20px 30px;
+	}
+
 	.list {
 		padding: 0;
+	}
+
+	.btns {
+		gap: 10px;
+	}
+
+	.btn {
+		padding: 8px 15px;
+		min-width: 120px;
 	}
 }

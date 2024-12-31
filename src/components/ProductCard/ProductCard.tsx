@@ -30,8 +30,8 @@ function ProductCard(props: ProductCardProps) {
               <HeartIcon
                 className={
                   isLiked
-                    ? `${styles.heart} ${styles.favorites}`
-                    : `${styles.heart}`
+                    ? `${styles.heart_icon} ${styles.favorites}`
+                    : `${styles.heart_icon}`
                 }
               />
             </div>

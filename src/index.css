@@ -5,11 +5,28 @@
 }
 
 :root {
+  --main-bg-color: #37414B;
+	--blue-color: #33799C;
+	--dark-blue-color: #0b618b;
+	--white-color: #FFFFFF;
+	--text-color: rgba(255, 255, 255, 0.87);
+
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color: var(--text-color);
+  background-color: var(--main-bg-color);
+
 }
 
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+}
+
+a {
+	color: var(--text-color);
+	text-decoration: none;
 }

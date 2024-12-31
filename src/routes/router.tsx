@@ -7,6 +7,7 @@ import {
 import { AppLayout } from "../layout/AppLayout";
 import ErrorPage from "./../ErrorPage";
 import ProductsPage from "../pages/ProductsPage/ProductsPage";
+import ProductDetailsPage from "../pages/ProductDetailsPage/ProductDetailsPage";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -14,7 +15,7 @@ export const router = createBrowserRouter(
       <Route path="/" element={<AppLayout/>} errorElement={<ErrorPage/>}>
         <Route index element={<Navigate to="/products" replace />} />
         <Route path="/products" element={<ProductsPage />} />
-        <Route path="/products/:id" element={<div>Products15</div>} />
+        <Route path="/products/:id" element={<ProductDetailsPage/>} />
       </Route>
 			<Route path="/create-product" element={<AppLayout/>} errorElement={<ErrorPage/>} >
 			  <Route index element={<div>Create</div>} />

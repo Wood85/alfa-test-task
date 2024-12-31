@@ -1,6 +1,8 @@
 import IProduct from '../../interfaces/Product';
 import { HeartIcon } from "../../assets/images/HeartIcon";
 import { TrashIcon } from '../../assets/images/TrashIcon';
+import { useAppDispatch } from '../../hooks/redux';
+import { details } from '../../store/reducers/productSlice';
 import styles from "./ProductCard.module.css";
 
 interface ProductCardProps extends IProduct {
@@ -9,12 +11,17 @@ interface ProductCardProps extends IProduct {
   onNavigate: (id: number) => void;
 }
 
-function ProductCard(props: ProductCardProps) {
-  const { id, title, price, images, isLiked, onToggleLike, onDelete, onNavigate} = props;
+function ProductCard({ id, title, price, images, isLiked, description, onToggleLike, onDelete, onNavigate}: ProductCardProps) {
+
+	const productDetails = {id, title, price, images, isLiked, description};
+
+	const dispatch = useAppDispatch();
 
   return (
 		<li className={styles.card}>
-			<div className={styles.card_container} onClick={() => onNavigate(id)}>
+			<div className={styles.card_container} onClick={() => {
+				dispatch(details(productDetails))
+				onNavigate(id)}}>
 			  <div className={styles.product}>
 					<div className={styles.container}>
 					  <div className={styles.img_wrap}>

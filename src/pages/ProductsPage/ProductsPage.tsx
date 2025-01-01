@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import { useAppSelector, useAppDispatch } from "../../hooks/redux";
 import { setProducts, toggleFavorite, deleteProduct, setLoading } from "../../store/reducers/productsSlice";
+import { useNavigate } from "react-router";
 import Spinner from "../../components/Spinner/Spinner";
 import ProductCard from "../../components/ProductCard/ProductCard";
 
 import styles from "./ProductsPage.module.css";
 
 function ProductsPage() {
-
+  
+	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
 	const { products, favorites, isLoading } = useAppSelector((state) => state.products);
 	const [filter, setFilter] = useState<"all" | "favorites">("all");
@@ -40,6 +42,7 @@ function ProductsPage() {
 			<div className={styles.btns}>
         <button className={styles.btn} onClick={() => setFilter("all")}>All</button>
         <button className={styles.btn} onClick={() => setFilter("favorites")}>Favorites</button>
+				<button className={styles.btn} onClick={() => navigate("/create-product")}>Create Product</button>
       </div>
       <ul className={styles.list}>
         {filteredProducts.map((product) => (

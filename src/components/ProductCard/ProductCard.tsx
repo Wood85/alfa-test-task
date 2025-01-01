@@ -57,5 +57,5 @@ function ProductCard({ id, title, price, images, isLiked, onToggleLike, onDelete
   );
 };
 
-export default ProductCard
+export default ProductCard;
 

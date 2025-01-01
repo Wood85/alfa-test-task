@@ -40,10 +40,12 @@ export const productsSlice = createSlice({
 		setLoading(state, action: PayloadAction<boolean>) {
       state.isLoading = action.payload;
     },
-    
+    addProduct(state, action: PayloadAction<IProduct>) {
+      state.products.push(action.payload);
+    },
   },
 });
 
-export const { setProducts, toggleFavorite, deleteProduct, setLoading } = productsSlice.actions;
+export const { setProducts, toggleFavorite, deleteProduct, setLoading, addProduct } = productsSlice.actions;
 
 export default productsSlice.reducer;

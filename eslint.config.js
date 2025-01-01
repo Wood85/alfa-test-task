@@ -12,7 +12,7 @@ export default tseslint.config(
     extends: [
       js.configs.recommended,
       ...tseslint.configs.recommended,
-      eslintPluginPrettierRecommended,
+      eslintPluginPrettierRecommended
     ],
     files: ["**/*.{ts,tsx}"],
     languageOptions: {
@@ -27,6 +27,6 @@ export default tseslint.config(
       ...reactHooks.configs.recommended.rules,
       "react-refresh/only-export-components": ["warn", { allowConstantExport: true }]
     },
-		eslintConfigPrettier,
+    eslintConfigPrettier
   }
 );

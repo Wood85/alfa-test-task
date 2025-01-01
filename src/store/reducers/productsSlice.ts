@@ -6,12 +6,16 @@ export interface IState {
 	products: IProduct[];
 	favorites: number[];
 	isLoading: boolean;
+	currentPage: number;
+  itemsPerPage: number;
 }
 
 const initialState: IState = {
 	products: [],
 	favorites: [],
 	isLoading: false,
+	currentPage: 1,
+  itemsPerPage: 10,
 };
 
 export const productsSlice = createSlice({
@@ -43,9 +47,12 @@ export const productsSlice = createSlice({
     addProduct(state, action: PayloadAction<IProduct>) {
       state.products.push(action.payload);
     },
+		setCurrentPage(state, action: PayloadAction<number>) {
+      state.currentPage = action.payload;
+    },
   },
 });
 
-export const { setProducts, toggleFavorite, deleteProduct, setLoading, addProduct } = productsSlice.actions;
+export const { setProducts, toggleFavorite, deleteProduct, setLoading, addProduct, setCurrentPage } = productsSlice.actions;
 
 export default productsSlice.reducer;

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useAppSelector, useAppDispatch } from "../../hooks/redux";
 import { setProducts, toggleFavorite, deleteProduct, setLoading } from "../../store/reducers/productsSlice";
 import { useNavigate } from "react-router";
+import Pagination from "../../components/Pagination/Pagination";
 import Spinner from "../../components/Spinner/Spinner";
 import ProductCard from "../../components/ProductCard/ProductCard";
 
@@ -11,7 +12,8 @@ function ProductsPage() {
   
 	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
-	const { products, favorites, isLoading } = useAppSelector((state) => state.products);
+	const { products, favorites, isLoading, currentPage, itemsPerPage } = useAppSelector((state) => state.products);
+
 	const [filter, setFilter] = useState<"all" | "favorites">("all");
 
 	useEffect(() => {
@@ -27,10 +29,13 @@ function ProductsPage() {
 		} 
   }, [dispatch, products.length]);
 
+	const startIndex = (currentPage - 1) * itemsPerPage;
+  const currentItems = products.slice(startIndex, startIndex + itemsPerPage);
+
 	const filteredProducts =
     filter === "favorites"
-      ? products.filter((product) => favorites.includes(product.id))
-      : products;
+      ? currentItems.filter((product) => favorites.includes(product.id))
+      : currentItems;
 
 	if (isLoading) {
 		return <div className={styles.spinner}><Spinner /></div>;
@@ -59,6 +64,7 @@ function ProductsPage() {
 					/>
         ))}
       </ul>
+			<Pagination/>
     </div>
   );
 }

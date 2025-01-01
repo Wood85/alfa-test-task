@@ -8,14 +8,14 @@ export function AppLayout() {
   return (
     <main className={styles.page}>
       <div className={styles.header}>
-				<Header/>
-			</div>
-			<div className={styles.outlet}>
-			  <Outlet />
-			</div>
-			<div className={styles.footer}>
-				<Footer/>
-			</div>
+        <Header />
+      </div>
+      <div className={styles.outlet}>
+        <Outlet />
+      </div>
+      <div className={styles.footer}>
+        <Footer />
+      </div>
     </main>
   );
 }

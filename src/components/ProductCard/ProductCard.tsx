@@ -13,7 +13,7 @@ function ProductCard({
   id,
   title,
   price,
-  images,
+  image,
   isLiked,
   onToggleLike,
   onDelete
@@ -30,7 +30,7 @@ function ProductCard({
         <div className={styles.product}>
           <div className={styles.container}>
             <div className={styles.img_wrap}>
-              <img className={styles.img} src={images[0]} alt={title} />
+              <img className={styles.img} src={image} alt={title} />
             </div>
             <div
               className={styles.heart_container}

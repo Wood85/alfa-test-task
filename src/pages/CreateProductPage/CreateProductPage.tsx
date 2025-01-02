@@ -31,7 +31,7 @@ function CreateProductPage() {
       const newProduct = {
         id: Date.now(),
         title: data.name,
-        images: [reader.result as string],
+        image: reader.result as string,
         description: data.description,
         price: parseFloat(data.price),
         isLiked: false

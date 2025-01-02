@@ -20,7 +20,7 @@ function ProductDetailsPage() {
       <h1 className={styles.title}>{product.title}</h1>
       <div className={styles.container}>
         <div className={styles.img_container}>
-          <img className={styles.img} src={product.images[0]} />
+          <img className={styles.img} src={product.image} />
           {product.isLiked && (
             <div className={styles.like}>
               <HeartIcon className={styles.heart_icon} />

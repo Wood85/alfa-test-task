@@ -27,7 +27,7 @@ function ProductsPage() {
     if (products.length === 0) {
       dispatch(setLoading(true));
       const fetchProducts = async () => {
-        const response = await fetch("https://api.escuelajs.co/api/v1/products");
+        const response = await fetch("https://fakestoreapi.com/products");
         const data = await response.json();
         dispatch(setProducts(data));
       };
@@ -81,7 +81,7 @@ function ProductsPage() {
             id={product.id}
             title={product.title}
             price={product.price}
-            images={product.images}
+            image={product.image}
             description={product.description}
             isLiked={product.isLiked}
             onToggleLike={() => dispatch(toggleFavorite(product.id))}

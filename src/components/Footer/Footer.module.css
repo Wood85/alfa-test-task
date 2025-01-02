@@ -1,0 +1,32 @@
+.footer {
+  width: 100%;
+  background-color: var(--dark-blue-color);
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.logo {
+  width: 44px;
+  height: 48px;
+  cursor: pointer;
+}
+
+.img {
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .logo,
+  .github_icon {
+    width: 30px;
+    height: 30px;
+  }
+}

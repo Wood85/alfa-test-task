@@ -2,6 +2,7 @@
   "name": "alfa-test-task",
   "private": true,
   "version": "0.0.0",
+	"homepage": "https://Wood85.github.io/alfa-test-task",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,7 +11,8 @@
     "lint:fix": "npx eslint ./src --fix",
     "format": "npx prettier . --check",
     "format:fix": "npx prettier . --write",
-    "preview": "vite preview"
+    "preview": "vite preview",
+		"deploy": "npm run build && gh-pages -d dist"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.5.0",
@@ -32,6 +34,7 @@
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.16",
+    "gh-pages": "6.3.0",
     "globals": "^15.14.0",
     "prettier": "^3.4.2",
     "typescript": "~5.6.2",

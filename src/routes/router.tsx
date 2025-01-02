@@ -17,5 +17,5 @@ export const router = createBrowserRouter(
         <Route index element={<CreateProductPage />} />
       </Route>
     </>
-  )
+  ), {basename: "/alfa-test-task"}
 );
